@@ -18,6 +18,8 @@ object Master {
 
   case class Ack(workId: String)
 
+  // the following defines how a worker's status can change from Master's point of view.
+  // helping maintain the representations of workers status in Master's worker container, aka, 'workers'
   private sealed trait WorkerStatus
   private case object Idle extends WorkerStatus
   private case class Busy(workId: String, deadline: Deadline) extends WorkerStatus
@@ -201,6 +203,7 @@ class Master(workTimeout: FiniteDuration) extends PersistentActor with Timers wi
       }
     }
 
+  // change worker's state in MAP 'workers' to idle
   def changeWorkerToIdle(workerId: String, workId: String): Unit =
     workers.get(workerId) match {
       case Some(workerState @ WorkerState(_, Busy(`workId`, _), _)) ⇒
@@ -209,8 +212,4 @@ class Master(workTimeout: FiniteDuration) extends PersistentActor with Timers wi
       case _ ⇒
         // ok, might happen after standby recovery, worker state is not persisted
     }
-
-  def tooLongSinceHeardFrom(lastHeardFrom: Long) =
-    System.currentTimeMillis() - lastHeardFrom > considerWorkerDeadAfter.toMillis
-
 }
