@@ -1,3 +1,6 @@
+## How to run
+[instruction](https://developer.lightbend.com/guides/akka-distributed-workers-scala/experimenting.html)
+
     +------------------------------------------+       +--------------------------+                    
     |            FrontEnd Producer             |       |    FrontEnd Consumer     |                    
     |--------------------|---------------------|       |                          |                    
@@ -14,7 +17,7 @@
                              |         |     |         +--------------------------+                    
                              |         |     |                       ^                                 
                          Otherwise Exception v                       | WorkRst                         
-   +-------------------------|----------------------------------------------------+                    
+   +-------------------------|----------------------------------------------------+                   
    +---------++---------++-----------+             Master            +-----------+|                    
    |         ||persist  || persist   |maintains:                     | Recovery  ||                    
    |Register ||WorkStart|| WorkAccept|1. PubSub topics  +------------+           ||                    
@@ -22,7 +25,7 @@
    |worker   ||         ||           |and their HP      |WorkerFailed|           ||                    
    |or       ||update   || update    |3. states of each |event       |from       ||                    
    |replenish||WorkerState wokerState|work /to be done  |            |'event-log-||                    
-   |worker's ||WorkState|| workState |	/completed       |update      |replay'    ||                    
+   |worker's ||WorkState|| workState |	/completed      |update      |replay'    ||                    
    |HP       ||         |+-----------+    /in progress  |wokerState  |           ||                    
    +---------++---------+|persist work  ----------------+workState   |           ||                    
    | ^     |      ^  |   |completed   |Master schedules |------------+from 'snap-||                    
