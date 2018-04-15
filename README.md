@@ -1,6 +1,7 @@
 ## How to run
 [instruction](https://developer.lightbend.com/guides/akka-distributed-workers-scala/experimenting.html)
 
+<pre>
     +------------------------------------------+       +--------------------------+                    
     |            FrontEnd Producer             |       |    FrontEnd Consumer     |                    
     |--------------------|---------------------|       |                          |                    
@@ -57,7 +58,5 @@
              +-----------+    +-----------+ Executor is where   +-----------+                          
              | Executor  |    | Executor  | actual computation  | Executor  |                          
              +-----------+    +-----------+ carries out         +-----------+                          
-                                                                                                       
-                                                                                                       
-                                                                                                       
+</pre>
                                                                                                        
