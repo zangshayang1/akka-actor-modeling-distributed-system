@@ -1,22 +1,7 @@
 ## How to run
 [instruction](https://developer.lightbend.com/guides/akka-distributed-workers-scala/experimenting.html)
 
-    +------------------------------------------+       +--------------------------+                    
-    |            FrontEnd Producer             |       |    FrontEnd Consumer     |                    
-    |--------------------|---------------------|       |                          |                    
-    |Idle                |Busy                 |       |                          |                    
-    |               Switch state and send 'Work'       | Clients that subscribed  |                    
-    |Produce a 'Work' -----------------------+ |       | one or more topics, such |                    
-    |for every 'Tick'    |  ACK     NotOK    | |       | as "WorkResult".         |                    
-    |scheduled.          |   ^         ^     | |       |                          |                    
-    +------------------------------------------+       +--------------------------+                    
-                             |Schedule |     |                       ^                                 
-                             |'ReTry'  |     |                       | WorkRst                         
-                             |until    |     |         +--------------------------+                    
-                             |ACK      |     |         |   Akka PubSub Mediator   |                    
-                             |         |     |         +--------------------------+                    
-                             |         |     |                       ^                                 
-   +---------------------Otherwise Exception v                       | WorkRst                         
+               
    +-------------------------|----------------------------------------------------+                   
    +---------++---------++-----------+             Master            +-----------+|                    
    |         ||persist  || persist   |maintains:                     | Recovery  ||                    
