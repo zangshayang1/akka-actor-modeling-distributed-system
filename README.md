@@ -16,7 +16,7 @@
                              |ACK      |     |         |   Akka PubSub Mediator   |                    
                              |         |     |         +--------------------------+                    
                              |         |     |                       ^                                 
-                         Otherwise Exception v                       | WorkRst                         
+   +---------------------Otherwise Exception v                       | WorkRst                         
    +-------------------------|----------------------------------------------------+                   
    +---------++---------++-----------+             Master            +-----------+|                    
    |         ||persist  || persist   |maintains:                     | Recovery  ||                    
