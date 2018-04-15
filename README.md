@@ -1,5 +1,9 @@
 ## How to run
-[instruction](https://developer.lightbend.com/guides/akka-distributed-workers-scala/experimenting.html)
+[Instruction From Lightbend](https://developer.lightbend.com/guides/akka-distributed-workers-scala/experimenting.html)
+
+## Model distributed system using Akka's actors
+Akka is used to implement internal RPC calls for Spark before version 1.6. 
+They stopped using it because it requires that developers use the same version of Akka for both the downstream and the upstream development of an application using spark. Details: [SPARK-5293](https://issues.apache.org/jira/browse/SPARK-5293) 
 
 <pre>
     +------------------------------------------+       +--------------------------+                    
